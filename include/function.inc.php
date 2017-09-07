@@ -48,7 +48,7 @@ function deleteArticle($id_article)
 }
 function afficherArticlesByClasse($id_classe)
 {
-    require('../include/connexion.inc.php');
+    require('include/connexion.inc.php');
     if(!is_numeric($id_classe) OR empty($id_classe))
     {
          trigger_error("ID CLASSE", E_USER_ERROR);
@@ -62,7 +62,7 @@ function afficherArticlesByClasse($id_classe)
 }
 function afficherArticlesByCategory($id_category)
 {
-    require('../include/connexion.inc.php');
+    require('include/connexion.inc.php');
     if(!is_numeric($id_category) OR empty($id_category))
     {
          trigger_error("ID CATEGORY", E_USER_ERROR);
@@ -76,7 +76,7 @@ function afficherArticlesByCategory($id_category)
 }
 function afficherArticles()
 {
-    require('../include/connexion.inc.php');
+    require('include/connexion.inc.php');
     $totalArt = $bdd->query('SELECT * FROM articles');
     $resultArt = $totalArt->fetchAll(PDO::FETCH_OBJ);
     return $resultArt;

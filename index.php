@@ -24,7 +24,7 @@
     <body>
         <nav>
             <ul class="nav nav-tabs">
-                <li role="presentation"><a href="index.php">Accueil</a></li>
+                <li role="presentation"><a href="index.php?page=listeArticles">Accueil</a></li>
                 <li role="presentation"><a href="index.php?page=inscription">Inscription</a></li>
                 <li role="presentation"><a href="index.php?page=connexion">Connexion</a></li>
                 <li role="presentation"><a href="index.php?page=admin">Administration</a></li>
@@ -42,8 +42,6 @@
             {
                include("pages/listeArticles.php");
             }
-        
-            include("admin/add.php");
         
         ?>
         
