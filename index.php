@@ -43,7 +43,6 @@
                include("pages/listeArticles.php");
             }
         
-            include("admin/add.php");
         
         ?>
         

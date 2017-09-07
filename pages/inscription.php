@@ -3,7 +3,7 @@
 // connexion à la base de données
 require('./include/connexion.inc.php');
 
-$regex='#^[\w\sÀÁÂÃÄÅÇÑñÇçÈÉÊËÌÍÎÏÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöøùúûüýÿ\',-]{3,50}$#i';
+$regex='#^[\w\sÀÁÂÃÄÅÇÑñÇçÈÉÊËÌÍÎÏÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöøùúûüýÿ!\',-]{3,50}$#i';
 $regexCp='#^[0-9]{5}$#i';
 // on verifie si la variable POST n'est pas vide. 
 if(!empty($_POST) and isset($_POST))
@@ -261,6 +261,7 @@ if(isset($success))
   <label class="col-md-4 control-label" for=""></label>
   <div class="col-md-4">
     <button id="" name="" class="btn btn-primary">S'inscrire</button>
+  <a href="index.php?page=connexion">Déja inscrit ? Connectez vous</a>
   </div>
 </div>
 
