@@ -9,6 +9,14 @@
         $req->execute();
 
         $res = $req->fetchAll(PDO::FETCH_OBJ);
+    
+        $req->closeCursor();
+
+        $req = $bdd->prepare('SELECT * FROM classe WHERE id=:id');
+        $req->bindValue(':id', $res[0]->classe);
+        $req->execute();
+
+        $res2 = $req->fetch(PDO::FETCH_OBJ);
     ?>
    
     <section>
@@ -17,7 +25,7 @@
         <div>
             <h4>Pseudo: </h4> <span><?= $res[0]->name; ?></span><br/>
             <h4>Email: </h4> <span><?= $res[0]->email; ?></span><br/>
-            <h4>Classe: </h4> <span><?= $res[0]->classe; ?></span><br/>
+            <h4>Classe: </h4> <span><?= $res2->niveauClasse; ?></span><br/>
             <h4>Adresse: </h4> <span><?= $res[0]->adresse; ?></span><br/>
             <h4>Code postal: </h4> <span><?= $res[0]->codePostal; ?></span><br/>
             <h4>Ville: </h4> <span><?= $res[0]->ville; ?></span><br/>
