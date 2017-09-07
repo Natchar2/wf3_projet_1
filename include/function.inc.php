@@ -1,7 +1,7 @@
 <?php
 function isAdmin($users)
 {
-   require('connexion.inc.php'); // on appelle la connexion PDO.
+    require('connexion.inc.php'); // on appelle la connexion PDO.
     $verifAdmin = $bdd->prepare('SELECT COUNT(id) AS isAdmin FROM users WHERE name =:name AND admin=1');
     $verifAdmin->bindValue('name',$users);
     $verifAdmin->execute();
@@ -16,9 +16,10 @@ function isAdmin($users)
         return false;
     }
 }
+
 function isArticle($id_article)
 {
-   require('connexion.inc.php'); // on appelle la connexion PDO.
+    require('connexion.inc.php'); // on appelle la connexion PDO.
     $verifArticle = $bdd->prepare('SELECT COUNT(id) AS isArticle FROM articles WHERE id =:id_article');
     $verifArticle->bindValue('id_article',$id_article);
     $verifArticle->execute();
@@ -80,7 +81,7 @@ function afficherArticlesByClasse($id_classe)
 }
 function afficherArticlesByCategory($id_category)
 {
-    require('./include/connexion.inc.php');
+    require('connexion.inc.php');
     if(!is_numeric($id_category) OR empty($id_category))
     {
          trigger_error("ID CATEGORY", E_USER_ERROR);
@@ -99,6 +100,28 @@ function afficherArticles()
     $resultArt = $totalArt->fetchAll(PDO::FETCH_OBJ);
     return $resultArt;
 }
-
+function verifDataPost($field, $data, $regex, $text)
+    {
+        if(isset($data))
+        {
+            if(!empty($data))
+            {
+                if(!preg_match($regex, $data))
+                {
+                    $errors[] = $text;
+                }
+            }
+            else
+            {
+                $errors[] = "Votre champs " . $field . " est vide";
+            }
+        }
+        else
+        {
+            $errors[] = "Le champ " . $field . " n'existe pas";
+        }
+        
+        return (isset($errors)) ? $errors : false;
+    }
 
 ?>
