@@ -1,43 +1,5 @@
 <?php
-    session_start();
-    
-    $_SESSION['name'] = "natchar";
-
-    if(isset($_GET['page']) && !empty($_GET['page']) && is_string($_GET['page']))
-    {
-        if(preg_match("#^\w{1,20}$#", $_GET['page']))
-        {
-            $page = $_GET['page'] . ".php";
-            
-            //Scan des fichiers contenu dans le dossiers pages
-            $arrayPageExist = scandir("pages");
-            
-            //Trie des fichiers et dossiers
-            forEach($arrayPageExist as $data)
-            {
-                if(!is_dir($data)) $arrayPageAvailable[] = $data;
-            }
-            
-            //Verification de l'existance de la page demandé par l'utilisateur
-            if(!in_array($page, $arrayPageAvailable))
-            {
-                $page = 'index';
-            }
-            else
-            {
-                $page = "pages/" . $page;
-            }
-        }
-        else
-        {
-            $page = "index";
-        }
-    }
-    else
-    {
-        $page = 'index';
-    }
-
+    require('controller/controller.php');
 ?>
 
 
@@ -74,12 +36,14 @@
             if(isset($page))
             {
                 //Inclusion de la page demandé
-                if($page != 'index') include($page);
+                include($page);
             }
             else
             {
-               trigger_error("Cette page n'existe pas", E_USER_ERROR); 
+               include("pages/listeArticles.php");
             }
+        
+            include("admin/add.php");
         
         ?>
         

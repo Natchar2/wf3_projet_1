@@ -1,6 +1,8 @@
 <?php
+
 // connexion à la base de données
 require('./include/connexion.inc.php');
+
 $regex='#^[\w\sÀÁÂÃÄÅÇÑñÇçÈÉÊËÌÍÎÏÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöøùúûüýÿ\',-]{3,50}$#i';
 $regexCp='#^[0-9]{5}$#i';
 // on verifie si la variable POST n'est pas vide. 
