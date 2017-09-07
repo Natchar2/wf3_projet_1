@@ -5,9 +5,22 @@ require('./include/connexion.inc.php');
 // on teste si l'utilisateur est admin. 
 if(isAdmin('drekher')) //$_SESSION['name'];
 {
+    if(isset($_GET['id_article']) AND is_numeric($_GET['id_article']))
+    {
+        if(!deleteArticle($_GET['id_article'])) //
+        {
+            $errors[]='Suppression de l\'article impossible';
+        }
+        else
+        {
+            $success = 'Article supprimé';
+        }
+    }
+    
+    
     $infosArticles = $bdd->query("SELECT * FROM articles");
     $articles = $infosArticles->fetchAll(PDO::FETCH_OBJ);
-    $listeArticle = '<table class="table"><tr><th>ID</th><th>Nom</th><th>Auteur</th><th>Categorie</th><th>Classe</th><th>Date de publication</th><th> Plus d\'action';
+    $listeArticle = '<table class="table"><tr><th>ID</th><th>Nom</th><th>Auteur</th><th>Categorie</th><th>Classe</th><th>Date de publication</th><th> Plus d\'action</th>';
     foreach($articles as $article)
     {
         //on recupere les id des categories
@@ -22,19 +35,8 @@ if(isAdmin('drekher')) //$_SESSION['name'];
         $listeArticle.='<tr><td>'.htmlspecialchars($article->id).'</td><td>'.htmlspecialchars($article->titre).'</td><td>'.htmlspecialchars($article->auteur).'</td><td>'.htmlspecialchars($categorie->nameCategorie).'</td><td>'.htmlspecialchars($classe->niveauClasse).'</td><td>'.htmlspecialchars(date("d-m-Y", $article->datePublication)).'</td><td><a href="index.php?page=admin&id_article='.htmlspecialchars($article->id).'" class="btn btn-danger">Supprimer</a></td></tr>';
     }
 
-    $listeArticle.='<table>';
+    $listeArticle.='</table>';
     
-    if(isset($_GET['id_article']) AND is_numeric($_GET['id_article']))
-    {
-        if(!deleteArticle($_GET['id_article'])) //
-        {
-            $errors[]='Suppression de l\'article impossible';
-        }
-        else
-        {
-            $success = 'Article supprimé';
-        }
-    }
 }
 else
 {

@@ -46,4 +46,41 @@ function deleteArticle($id_article)
             
     }
 }
+function afficherArticlesByClasse($id_classe)
+{
+    require('../include/connexion.inc.php');
+    if(!is_numeric($id_classe) OR empty($id_classe))
+    {
+         trigger_error("ID CLASSE", E_USER_ERROR);
+    }
+    
+    $articleByClasse = $bdd->prepare('SELECT * FROM articles WHERE classe = :id_classe');
+    $articleByClasse->bindValue('id_classe',$id_classe);
+    $articleByClasse->execute();
+    $result = $articleByClasse->fetchAll(PDO::FETCH_OBJ);
+    return $result;
+}
+function afficherArticlesByCategory($id_category)
+{
+    require('../include/connexion.inc.php');
+    if(!is_numeric($id_category) OR empty($id_category))
+    {
+         trigger_error("ID CATEGORY", E_USER_ERROR);
+    }
+    
+    $articleByCat = $bdd->prepare('SELECT * FROM articles WHERE categorie = :id_category');
+    $articleByCat->bindValue('id_category',$id_category);
+    $articleByCat->execute();
+    $resultCat = $articleByCat->fetchAll(PDO::FETCH_OBJ);
+    return $resultCat;
+}
+function afficherArticles()
+{
+    require('../include/connexion.inc.php');
+    $totalArt = $bdd->query('SELECT * FROM articles');
+    $resultArt = $totalArt->fetchAll(PDO::FETCH_OBJ);
+    return $resultArt;
+}
+
+
 ?>
