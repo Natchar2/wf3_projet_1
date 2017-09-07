@@ -1,30 +1,14 @@
 <?php
     include("include/connexion.inc.php");
-
-    function verifDataPost($field, $data, $regex, $text)
+    if(!isAdmin($_SESSION['name']))
     {
-        if(isset($data))
-        {
-            if(!empty($data))
-            {
-                if(!preg_match($regex, $data))
-                {
-                    $errors[] = $text;
-                }
-            }
-            else
-            {
-                $errors[] = "Votre champs " . $field . " est vide";
-            }
-        }
+        $errors[]='Vous n\êtes pas autorisé à accéder à cette page';
+        $displayForm = 0;
+    }
         else
         {
-            $errors[] = "Le champ " . $field . " n'existe pas";
+            $displayForm = 1;
         }
-        
-        return (isset($errors)) ? $errors : false;
-    }
-
     if(isset($_POST) && !empty($_POST))
     {
         $regex='#^[\w\sÀÁÂÃÄÅÇÑñÇçÈÉÊËÌÍÎÏÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöøùúûüýÿ!?\',-]{3,50}$#i';
@@ -74,6 +58,8 @@
 <h1>Ajouter un Article</h1>
 
 <?php
+    
+
     if(isset($errors))
     {
         foreach($errors as $error)
@@ -83,6 +69,11 @@
     }
 
     if(isset($success)) echo '<p class="alert alert-success col-md-10 col-md-offset-1">' . $success . '</p>';
+
+    if(isset($displayForm) AND $displayForm != 0)
+    {
+        
+   
 ?>
 
 <form action="" method="POST" class="form-horizontal">
@@ -144,3 +135,6 @@
         <input type="submit" class="btn btn-primary">
     </div>
 </form>
+<?php
+    }
+?>
