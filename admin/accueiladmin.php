@@ -32,7 +32,7 @@ if(isAdmin($_SESSION['name'])) //$_SESSION['name'];
         $classe = $infosClasse->fetch(PDO::FETCH_OBJ);
         
         // on affiche la liste des articles
-        $listeArticle.='<tr><td>'.htmlspecialchars($article->id).'</td><td>'.htmlspecialchars($article->titre).'</td><td>'.htmlspecialchars($article->auteur).'</td><td>'.htmlspecialchars($categorie->nameCategorie).'</td><td>'.htmlspecialchars($classe->niveauClasse).'</td><td>'.htmlspecialchars(date("d-m-Y", $article->datePublication)).'</td><td><a href="index.php?page=admin&id_article='.htmlspecialchars($article->id).'" class="btn btn-danger">Supprimer</a></td></tr>';
+        $listeArticle.='<tr><td>'.htmlspecialchars($article->id).'</td><td>'.htmlspecialchars($article->titre).'</td><td>'.htmlspecialchars($article->auteur).'</td><td>'.htmlspecialchars($categorie->nameCategorie).'</td><td>'.htmlspecialchars($classe->niveauClasse).'</td><td>'.htmlspecialchars(date("d-m-Y", $article->datePublication)).'</td><td><a href="index.php?page=admin&action=list&id_article='.htmlspecialchars($article->id).'" class="btn btn-danger">Supprimer</a></td></tr>';
     }
 
     $listeArticle.='</table>';
