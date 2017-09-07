@@ -1,24 +1,30 @@
 <?php 
 require('include/connexion.inc.php');
 
-if(isset($_POST['name']) AND !empty($_POST['name'])){
 
-	if(!preg_match('#^[a-z0-9ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\-]{3,50}$#i', $_POST['name'])){
 
-		$errors[] = "Pseudo invalide";
-	}
-} else {
+if(!empty($_POST)){
+    
+    if(isset($_POST['name']) AND !empty($_POST['name']))
+    {
 
-	$errors[] = "Veuillez remplir le champ Pseudo!";
-}
+        if(!preg_match('#^[a-z0-9ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\-]{3,50}$#i', $_POST['name']))
+        {
+            $errors[] = "Pseudo invalide";
+        }
+    }    
+        else 
+        {
+            $errors[] = "Veuillez remplir le champ Pseudo!";
+        }   
+	if(isset($_POST['password']) AND !empty($_POST['password']))
+    {
 
-if(isset($_POST)){
-	if(isset($_POST['password']) AND !empty($_POST['password'])){
-
-		if(!preg_match('#^[a-z0-9ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\-]{3,50}$#i', $_POST['password'])){
+		if(!preg_match('#^[a-z0-9ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\-]{3,50}$#i', $_POST['password']))
+        {
 
 			$errors[] = "Mot de passe invalide !";
-		}
+        }
 	} else {
 
 		$errors[] = "Veuillez remplir le champ mot de passe !";

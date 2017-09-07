@@ -3,7 +3,7 @@
 require('./include/function.inc.php');
 require('./include/connexion.inc.php');
 // on teste si l'utilisateur est admin. 
-if(isAdmin('drekher')) //$_SESSION['name'];
+if(isAdmin($_SESSION['name'])) //$_SESSION['name'];
 {
     if(isset($_GET['id_article']) AND is_numeric($_GET['id_article']))
     {

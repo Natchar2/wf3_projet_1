@@ -16,6 +16,24 @@ function isAdmin($users)
         return false;
     }
 }
+function isArticle($id_article)
+{
+   require('connexion.inc.php'); // on appelle la connexion PDO.
+    $verifArticle = $bdd->prepare('SELECT COUNT(id) AS isArticle FROM articles WHERE id =:id_article');
+    $verifArticle->bindValue('id_article',$id_article);
+    $verifArticle->execute();
+    $result = $verifArticle->fetch(PDO::FETCH_OBJ);
+    if($result->isArticle == 1)
+    {
+        return true;
+        
+    }
+    else
+    {
+        return false;
+    }
+}
+
 
 function deleteArticle($id_article)
 {
@@ -48,7 +66,7 @@ function deleteArticle($id_article)
 }
 function afficherArticlesByClasse($id_classe)
 {
-    require('include/connexion.inc.php');
+    require('./include/connexion.inc.php');
     if(!is_numeric($id_classe) OR empty($id_classe))
     {
          trigger_error("ID CLASSE", E_USER_ERROR);
@@ -62,7 +80,7 @@ function afficherArticlesByClasse($id_classe)
 }
 function afficherArticlesByCategory($id_category)
 {
-    require('include/connexion.inc.php');
+    require('./include/connexion.inc.php');
     if(!is_numeric($id_category) OR empty($id_category))
     {
          trigger_error("ID CATEGORY", E_USER_ERROR);
@@ -76,7 +94,7 @@ function afficherArticlesByCategory($id_category)
 }
 function afficherArticles()
 {
-    require('include/connexion.inc.php');
+    require('./include/connexion.inc.php');
     $totalArt = $bdd->query('SELECT * FROM articles');
     $resultArt = $totalArt->fetchAll(PDO::FETCH_OBJ);
     return $resultArt;
