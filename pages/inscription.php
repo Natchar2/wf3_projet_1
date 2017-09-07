@@ -1,6 +1,6 @@
 <?php
 // connexion à la base de données
-require('../include/connexion.inc.php');
+require('./include/connexion.inc.php');
 $regex='#^[\w\sÀÁÂÃÄÅÇÑñÇçÈÉÊËÌÍÎÏÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöøùúûüýÿ\',-]{3,50}$#i';
 $regexCp='#^[0-9]{5}$#i';
 // on verifie si la variable POST n'est pas vide. 
@@ -142,6 +142,8 @@ if(!empty($_POST) and isset($_POST))
                 'pays' => $_POST['pays'],
                 'admin' => false
 				));
+                
+                $success='Vous êtes bien inscrit';
             }
        
         
@@ -160,8 +162,12 @@ if(isset($errors))
         echo '<div class="alert alert-danger">'.$error.'</div>';
     }
 }
+if(isset($success))
+{
+    echo '<div class="alert alert-success">'.$success.'</div>';
+}
 ?>
-<form class="form-horizontal" method="POST" action="inscription.php">
+<form class="form-horizontal" method="POST" action="index.php?page=inscription">
 <fieldset>
 
 <!-- Form Name -->
