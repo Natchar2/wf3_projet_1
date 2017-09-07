@@ -1,6 +1,6 @@
 <?php 
 require('./include/connexion.inc.php');
-require('./include/function.inc.php');
+
 if(isset($_GET['id_article']) AND is_numeric($_GET['id_article']))
 {
     //on appelle la fonction de lecture 
@@ -20,9 +20,9 @@ if(isset($_GET['id_article']) AND is_numeric($_GET['id_article']))
             $classe = $infosClasse->fetch(PDO::FETCH_OBJ);
             
             $afficheArticle = '<table width="50%">';
-            $afficheArticle.='<tr align="center"><td colspan="2" ><strong>Titre : '.htmlspecialchars($result->titre).'</strong></td><td> Ecrit par : '.htmlspecialchars($result->auteur).'</tr>';
+            $afficheArticle.='<tr align="center"><td colspan="2" class="bold">Titre : '.htmlspecialchars($result->titre).'</td><td class="bold"> Ecrit par : '.htmlspecialchars($result->auteur).'</tr>';
             $afficheArticle.='<tr><td colspan="3"><i> '.htmlspecialchars($result->contenu).'<i></td></tr>';
-            $afficheArticle.='<tr><td>Catégorie : '.htmlspecialchars($classe->niveauClasse).' </td><td>Niveau : '.htmlspecialchars($categorie->nameCategorie).' </td><td>Date de publication : '.htmlspecialchars(date("d-m-Y", $result->datePublication)).'</td></tr>';
+            $afficheArticle.='<tr><td class="bold">Catégorie : '.htmlspecialchars($classe->niveauClasse).' </td><td class="bold">Niveau : '.htmlspecialchars($categorie->nameCategorie).' </td><td class="bold">Date de publication : '.htmlspecialchars(date("d-m-Y", $result->datePublication)).'</td></tr>';
             $afficheArticle.='</table>';
         }
 }

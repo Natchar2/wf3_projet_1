@@ -1,6 +1,5 @@
 <?php
-// on appelle les fichiers importants. 
-require('./include/function.inc.php');
+// on appelle les fichiers importants.
 require('./include/connexion.inc.php');
 // on teste si l'utilisateur est admin. 
 if(isAdmin($_SESSION['name'])) //$_SESSION['name'];

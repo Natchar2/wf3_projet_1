@@ -30,8 +30,6 @@
 
             <?php if($res[0]->admin): ?>
                 <h4>Privilège: </h4> <span>Admin</span><br/>
-            <?php else: ?>
-                <h4>Privilège: </h4> <span>Utilisateur lambda</span><br/>
             <?php endif; ?>
         </div>
     </section>

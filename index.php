@@ -29,6 +29,7 @@
                 <li role="presentation"><a href="index.php?page=connexion">Connexion</a></li>
                 <li role="presentation"><a href="index.php?page=admin">Administration</a></li>
                 <li role="presentation"><a href="index.php?page=profil">Profil</a></li>
+                <li role="presentation"><a href="index.php?page=deconnexion">Déconnexion</a></li>
             </ul>
         </nav>
         

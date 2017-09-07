@@ -1,7 +1,7 @@
 <?php
     session_start();
     //$_SESSION['name'] = "natchar";
-    require('include/function.inc.php');
+    require_once('include/function.inc.php');
     
     $page = "listeArticles.php";
 
